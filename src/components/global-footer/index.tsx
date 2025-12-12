@@ -111,13 +111,14 @@ export const GlobalFooter = () => {
           </div>
         </FooterSections>
         <FooterBottom>
-          <div>Copyright © 2025 Apple Inc. All rights reserved.</div>
+          <div>Copyright © 2025 Apple Inc. All rights reserved. | Developed by <a href="https://github.com/black12-ag" target="_blank" rel="noopener noreferrer" style={{ textDecoration: 'underline' }}>black12-ag</a></div>
           <FooterLinks>
             <a href="#">Privacy Policy</a>
             <a href="#">Terms of Use</a>
             <a href="#">Sales and Refunds</a>
             <a href="#">Legal</a>
             <a href="#">Site Map</a>
+            <a href="https://github.com/sponsors/black12-ag" target="_blank" rel="noopener noreferrer">Sponsor</a>
           </FooterLinks>
         </FooterBottom>
       </FooterContent>
