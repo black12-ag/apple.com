@@ -1,103 +1,27 @@
-# Apple Website Clone
 
-A pixel-perfect clone of Apple.com built with React, TypeScript, and Vite. This project follows strict architectural rules for maintainability and scalability.
+# Apple.com High-Fidelity Clone
 
-## 🚀 Quick Start
+This project is a high-fidelity clone of Apple.com properly structured for deployment on Cloudflare Pages.
 
-```bash
-# Install dependencies
-npm install
+## Deployment Instructions (Cloudflare Pages)
 
-# Download assets from Apple.com
-npm run download-assets
+1.  **Connect Git:** Connect your GitHub repository (`black12-ag/apple.com`) to Cloudflare Pages.
+2.  **Build Settings:** Cloudflare should automatically detect the framework as **Vite**.
+    *   **Build Command:** `npm run build`
+        *   *Note:* The build script runs `tsc -b && vite build`.
+    *   **Output Directory:** `dist`
+3.  **Environment Variables:** None required for this static build.
+4.  **Node Version:** Recommended `20` or later (Cloudflare defaults are usually fine, but you can set `NODE_VERSION: 20` if needed).
 
-# Start development server
-npm run dev
+## Project Structure
 
-# Verify project structure
-npm run verify
+-   `src/pages`: Individual route components (following "One Page, One Folder").
+-   `src/components`: Shared components (GlobalNav, GlobalFooter, etc.).
+-   `src/assets`: Localized high-resolution images (scraped from official source).
 
-# Build for production
-npm run build
-```
+## Scripts
 
-## 📁 Project Structure
+-   `npm run dev`: Start local development server.
+-   `npm run build`: Type-check and build for production.
+-   `npm run download-assets`: Re-run the scraper to fetch fresh assets from apple.com.
 
-Follows the **"One Page, One Folder"** rule:
-
-```
-src/
-├── components/
-│   ├── global-nav/           # Global navigation
-│   │   ├── index.tsx
-│   │   ├── GlobalNav.styles.ts
-│   │   └── components/       # Each button in separate file
-│   │       ├── StoreButton/
-│   │       ├── MacButton/
-│   │       └── ...
-│   └── global-footer/        # Global footer
-├── pages/
-│   └── home/                 # Homepage
-│       ├── index.tsx         # Main view (connects components)
-│       ├── Home.logic.ts     # Business logic & state
-│       ├── Home.styles.ts    # Styled components
-│       └── components/       # Page-specific components
-│           ├── RibbonBanner/
-│           ├── HeroSection/
-│           └── PromoGrid/
-└── styles/
-    └── GlobalStyles.ts
-```
-
-## 🎯 Architecture Rules
-
-### ✅ Enforced Rules
-- **One Page, One Folder**: Every page has dedicated folder with index.tsx, logic.ts, styles.ts
-- **One Button, One File**: Each button/component in separate file
-- **Max 400 Lines**: No file exceeds 400 lines
-- **No Inline Code**: Main pages only contain layout and imports
-- **Atomicity**: Single responsibility per component
-
-### 🛠 Tech Stack
-- **Framework**: React 19 + TypeScript
-- **Build Tool**: Vite (Rolldown)
-- **Styling**: Styled Components
-- **Animations**: Framer Motion
-- **Routing**: React Router DOM
-
-## 📊 Verification
-
-Run `npm run verify` to check:
-- ✅ Folder structure compliance
-- ✅ Each button in separate file
-- ✅ Max line count (400 lines)
-- ✅ Downloaded assets
-
-## 🎨 Features
-
-- Sticky navigation bar with blur effect
-- Animated hero sections
-- Responsive promo grid
-- Comprehensive footer
-- Smooth scroll animations
-- Apple-style typography and spacing
-
-## 📦 Assets
-
-Assets are downloaded from Apple.com using the custom script:
-```bash
-npm run download-assets
-```
-
-Downloads 50+ images to `public/assets/images/`
-
-## 🧪 Testing
-
-All components verified with automated structure tests:
-- 26/26 tests passing ✅
-- All files under 400 lines ✅
-- Proper folder structure ✅
-
-## 📝 License
-
-MIT
