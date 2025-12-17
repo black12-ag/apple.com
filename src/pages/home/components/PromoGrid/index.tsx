@@ -14,29 +14,32 @@ const Grid = styled.section`
   }
 `;
 
-interface PromoCardData {
-  title: string;
-  subtitle: string;
-  image: string;
-  bgColor: string;
-  link: string;
-}
-
 interface PromoGridProps {
-  cards: PromoCardData[];
+  tiles: Array<{
+    id: string;
+    title: string;
+    subtitle: string;
+    image?: string;
+    bgColor?: string;
+    textColor?: string;
+    primaryCta?: { label: string; href: string };
+    secondaryCta?: { label: string; href: string };
+  }>;
 }
 
-export const PromoGrid = ({ cards }: PromoGridProps) => {
+export const PromoGrid = ({ tiles }: PromoGridProps) => {
   return (
     <Grid>
-      {cards.map((card, index) => (
+      {tiles.map((tile) => (
         <PromoCard 
-          key={index} 
-          title={card.title} 
-          description={card.subtitle}
-          image={card.image}
-          bgColor={card.bgColor}
-          link={card.link}
+          key={tile.id}
+          title={tile.title}
+          description={tile.subtitle}
+          image={tile.image}
+          bgColor={tile.bgColor}
+          textColor={tile.textColor}
+          primaryCta={tile.primaryCta}
+          secondaryCta={tile.secondaryCta}
         />
       ))}
     </Grid>

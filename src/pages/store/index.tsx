@@ -1,7 +1,7 @@
-import { 
-  StoreContainer, 
-  HeroSection, 
-  HeroTitle, 
+import {
+  StoreContainer,
+  HeroSection,
+  HeroTitle,
   HeroSubtitle,
   GiftSection,
   GiftTitle,
@@ -30,7 +30,7 @@ const ShopGiftsButton = styled(Link)`
 `;
 
 export const StorePage = () => {
-  const { featuredProducts } = useStoreLogic();
+  const { featuredProducts, accessories } = useStoreLogic();
 
   return (
     <StoreContainer>
@@ -38,7 +38,7 @@ export const StorePage = () => {
         <HeroTitle>Store</HeroTitle>
         <HeroSubtitle>The best way to buy the products you love.</HeroSubtitle>
       </HeroSection>
-      
+
       <GiftSection>
         <GiftTitle>Give something special.</GiftTitle>
         <GiftSubtitle>Find what they've been waiting for all year.</GiftSubtitle>
@@ -57,6 +57,22 @@ export const StorePage = () => {
               image={product.image}
               link={product.link}
               isNew={product.isNew}
+            />
+          ))}
+        </ProductGrid>
+      </ProductsSection>
+
+      <ProductsSection>
+        <SectionTitle>Accessories. Essentials that pair perfectly with your favorite devices.</SectionTitle>
+        <ProductGrid>
+          {accessories.map((product) => (
+            <StoreProductCard
+              key={product.id}
+              name={product.name}
+              tagline={product.tagline}
+              price={product.price}
+              image={product.image}
+              link={product.link}
             />
           ))}
         </ProductGrid>

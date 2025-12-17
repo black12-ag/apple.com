@@ -10,7 +10,7 @@ const Button = styled.button`
   svg {
     width: 16px;
     height: 16px;
-    fill: #f5f5f7;
+    fill: #1d1d1f;
     opacity: 0.8;
     transition: opacity 0.3s ease;
   }

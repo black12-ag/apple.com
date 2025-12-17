@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { CtaLink } from '../../../CtaLink';
 
-const Card = styled(motion.div) <{ $bgColor?: string }>`
+const Card = styled(motion.div) <{ $bgColor?: string; $textColor?: string }>`
   background-color: ${props => props.$bgColor || '#f5f5f7'};
-  color: #1d1d1f;
+  color: ${props => props.$textColor || '#1d1d1f'};
   text-align: center;
   padding: 40px 20px 0;
   min-height: 500px;
@@ -39,7 +39,7 @@ const ButtonGroup = styled.div`
   margin-bottom: 20px;
 `;
 
-const PrimaryLink = styled(Link)`
+const PrimaryLink = styled(CtaLink)`
   color: #0071e3;
   font-size: 17px;
   text-decoration: none;
@@ -68,32 +68,34 @@ interface PromoCardProps {
   description: string;
   image?: string;
   bgColor?: string;
-  link?: string;
+  textColor?: string;
+  primaryCta?: { label: string; href: string };
+  secondaryCta?: { label: string; href: string };
 }
 
-export const PromoCard = ({ title, description, image, bgColor, link }: PromoCardProps) => {
+export const PromoCard = ({
+  title,
+  description,
+  image,
+  bgColor,
+  textColor,
+  primaryCta,
+  secondaryCta,
+}: PromoCardProps) => {
   return (
-    <Card
-      $bgColor={bgColor}
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
-    >
+    <Card $bgColor={bgColor} $textColor={textColor}>
       <Title>{title}</Title>
       <Description>{description}</Description>
-      <ButtonGroup>
-        <PrimaryLink to={link || '#'}>Learn more</PrimaryLink>
-        <PrimaryLink to="/store">Buy</PrimaryLink>
-      </ButtonGroup>
+      {(primaryCta || secondaryCta) && (
+        <ButtonGroup>
+          {primaryCta && <PrimaryLink href={primaryCta.href}>{primaryCta.label}</PrimaryLink>}
+          {secondaryCta && <PrimaryLink href={secondaryCta.href}>{secondaryCta.label}</PrimaryLink>}
+        </ButtonGroup>
+      )}
       {image && (
         <CardImage
           src={image}
           alt={title}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
         />
       )}
     </Card>

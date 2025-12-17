@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { CtaLink } from '../CtaLink';
 
 const HeroContainer = styled.section<{ $bgColor?: string; $textColor?: string }>`
   background-color: ${props => props.$bgColor || '#f5f5f7'};
@@ -37,7 +37,7 @@ const ButtonGroup = styled(motion.div)`
   margin-bottom: 24px;
 `;
 
-const PrimaryButton = styled(Link)`
+const PrimaryButton = styled(CtaLink)`
   background-color: #0071e3;
   color: #fff;
   padding: 12px 22px;
@@ -52,7 +52,7 @@ const PrimaryButton = styled(Link)`
   }
 `;
 
-const SecondaryButton = styled(Link)`
+const SecondaryButton = styled(CtaLink)`
   background-color: transparent;
   color: #0071e3;
   padding: 12px 22px;
@@ -82,8 +82,8 @@ interface HeroSectionProps {
   image?: string;
   bgColor?: string;
   textColor?: string;
-  primaryBtn?: { text: string; link: string };
-  secondaryBtn?: { text: string; link: string };
+  primaryCta?: { label: string; href: string };
+  secondaryCta?: { label: string; href: string };
 }
 
 export const HeroSection = ({
@@ -92,44 +92,25 @@ export const HeroSection = ({
   image,
   bgColor,
   textColor,
-  primaryBtn,
-  secondaryBtn,
+  primaryCta,
+  secondaryCta,
 }: HeroSectionProps) => {
   return (
     <HeroContainer $bgColor={bgColor} $textColor={textColor}>
-      <Title
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-      >
+      <Title>
         {title}
       </Title>
-      <Subtitle
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6, delay: 0.1 }}
-      >
+      <Subtitle>
         {subtitle}
       </Subtitle>
-      <ButtonGroup
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6, delay: 0.2 }}
-      >
-        {primaryBtn && <PrimaryButton to={primaryBtn.link}>{primaryBtn.text}</PrimaryButton>}
-        {secondaryBtn && <SecondaryButton to={secondaryBtn.link}>{secondaryBtn.text}</SecondaryButton>}
+      <ButtonGroup>
+        {primaryCta && <PrimaryButton href={primaryCta.href}>{primaryCta.label}</PrimaryButton>}
+        {secondaryCta && <SecondaryButton href={secondaryCta.href}>{secondaryCta.label}</SecondaryButton>}
       </ButtonGroup>
       {image && (
         <HeroImage
           src={image}
           alt={title}
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.3 }}
         />
       )}
     </HeroContainer>

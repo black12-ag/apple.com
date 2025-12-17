@@ -10,7 +10,7 @@ import styled from 'styled-components';
 
 const NavTrigger = styled(Link)`
   font-size: 12px;
-  color: #fff;
+  color: #1d1d1f;
   text-decoration: none;
   opacity: 0.8;
   transition: opacity 0.3s ease;
@@ -35,19 +35,22 @@ export const GlobalNav = () => {
     setActiveMenuId(null);
   };
 
+  const menuEnterHandlers = globalNavData.reduce<Record<string, () => void>>((acc, menu) => {
+    acc[menu.id] = () => handleMouseEnter(menu.id);
+    return acc;
+  }, {});
+
   return (
     <NavContainer onMouseLeave={handleMouseLeave}>
       <NavContent>
         <LogoSection>
-          <Link to="/">
-            <AppleLogo />
-          </Link>
+          <AppleLogo />
         </LogoSection>
         <NavList>
           {globalNavData.map((menu) => (
             <NavItem
               key={menu.id}
-              onMouseEnter={() => handleMouseEnter(menu.id)}
+              onMouseEnter={menuEnterHandlers[menu.id]}
             >
               <NavTrigger to={`/${menu.id === 'store' ? 'store' : menu.id}`}>
                 {menu.label}
@@ -55,7 +58,7 @@ export const GlobalNav = () => {
               <NavDropdown
                 sections={menu.sections}
                 isVisible={activeMenuId === menu.id}
-                onMouseEnter={() => handleMouseEnter(menu.id)}
+                onMouseEnter={menuEnterHandlers[menu.id]}
                 onMouseLeave={handleMouseLeave}
               />
             </NavItem>
